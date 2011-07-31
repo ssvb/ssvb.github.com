@@ -1,0 +1,31 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Siarhei Siamashka</title>
+ <link href="http://ssvb.github.com/"/>
+ <link type="application/atom+xml" rel="self" href="http://ssvb.github.com/atom.xml"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>http://ssvb.github.com/</id>
+ <author>
+   <name>Siarhei Siamashka</name>
+   <email>siarhei.siamashka@gmail.com</email>
+ </author>
+
+ {% for post in site.posts %}
+ <entry>
+   <id>http://ssvb.github.com{{ post.id }}</id>
+   <link type="text/html" rel="alternate" href="http://ssvb.github.com{{ post.url }}"/>
+   <title>{{ post.title }}</title>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <author>
+      <name>Siarhei Siamashka</name>
+      <uri>http://ssvb.github.com/</uri>
+    </author>
+   <content type="html">{{ post.content | xml_escape }}</content>
+ </entry>
+ {% endfor %}
+ 
+</feed>
