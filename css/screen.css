@@ -22,11 +22,8 @@ body {
   text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
-}
-
-h1 {
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 1em;
   margin-bottom: 1em;
 }
 
@@ -49,6 +46,14 @@ a:visited {
 table {
   font-size: inherit;
   font: 100%;
+  background: #F8F8F8;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+table,th,td {
+  border: 1px solid #B0B0B0;
+  padding: 1px;
 }
 
 /*****************************************************************************/
