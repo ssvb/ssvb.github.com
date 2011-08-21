@@ -16,8 +16,23 @@
 <div class="site">
   <div class="title">
     <a href="/">Siarhei Siamashka</a>
-    <a style="float: right" href="http://feeds.feedburner.com/ssvb">
+    <table style="float: right; border-color: #FFFFFF; background: #FFFFFF"><tr>
+    <td style="border-color: #FFFFFF">
+        <a href="http://feeds.feedburner.com/ssvb">
         <img src="/images/rss.png" alt="Subscribe to RSS Feed" /></a>
+    <td style="border-color: #FFFFFF">
+        <g:plusone></g:plusone>
+    </table>
+
+<!-- Place this tag after the last plusone tag -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
   </div>
 
   {{ content }}
