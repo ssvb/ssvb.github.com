@@ -26,8 +26,10 @@ to use SIMD efficiently, it is important to use the smallest possible data type
 in calculations. The C code is happy to use 32-bit variables and
 "32-bit * 32-bit -> 32-bit" multiplications. But for the SIMD code,
 using 16-bit data means that we can pack more information into a single
-register and process more of it in parallel, saving CPU cycles. But using 16-bit
-calculations, we need to be sure that there are no overflows.
+register and process more of it in parallel, saving CPU cycles. Still using 16-bit
+calculations, we need to be sure that there are no unwanted overflows. And doing
+things somewhat different from C always has a risk of getting somewhat
+different results in the end.
 
 DCT takes 8x8 blocks of samples with the values in [-128, 127] range and produces
 blocks of 8x8 DCT coefficients in [-1024, 1023] range. IDCT can convert
