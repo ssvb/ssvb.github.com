@@ -56,6 +56,14 @@ table,th,td {
   padding: 1px;
 }
 
+.matrix {
+  table-layout:fixed;
+}
+
+.matrix table,th,td {
+  width: 38px;
+}
+
 /*****************************************************************************/
 /*
 /* Home
