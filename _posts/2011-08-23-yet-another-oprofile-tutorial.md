@@ -35,7 +35,7 @@ the confidence intervals for [normal distribution](http://en.wikipedia.org/wiki/
 (because Poisson distribution is approximately normal for the large number of samples):
 
 <a href="http://en.wikipedia.org/wiki/File:Standard_deviation_diagram.svg">
-<img src ="/images/2011-08-23/Standard_deviation_diagram.svg/500px-Standard_deviation_diagram.svg.png"
+<img src ="/images/2011-08-23-500px-Standard_deviation_diagram.svg.png"
 alt="Standard_deviation_diagram.svg from wikipedia, created by Petter Strandmark and licensed under CC BY 2.5"
 title="Standard_deviation_diagram.svg from wikipedia, created by Petter Strandmark and licensed under CC BY 2.5"</img></a>
 
