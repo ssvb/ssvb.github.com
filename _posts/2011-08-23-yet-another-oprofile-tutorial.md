@@ -237,3 +237,56 @@ index 3ef4462..56fb6c3 100644
  }
  
 {% endhighlight %}
+
+### Additional verification for the Poisson based stddev estimate (added on 2011-08-28)
+
+Let's take the following profiling session as an example:
+{% highlight sh %}
+Profiling through timer interrupt
+samples  %        image name               symbol name
+52105    40.0715  djpeg                    jpeg_idct_islow
+41281    31.7473  djpeg                    ycc_rgb_convert
+15126    11.6327  djpeg                    decode_mcu
+15001    11.5366  djpeg                    h2v1_fancy_upsample
+2029      1.5604  djpeg                    decompress_onepass
+1470      1.1305  libc-2.12.2.so           memset
+1118      0.8598  no-vmlinux               /no-vmlinux
+967       0.7437  libc-2.12.2.so           _wordcopy_fwd_dest_aligned
+333       0.2561  djpeg                    jpeg_fill_bit_buffer
+69        0.0531  libc-2.12.2.so           fwrite
+69        0.0531  libc-2.12.2.so           write
+{% endhighlight %}
+
+Poisson gives us a theoretical estimate for the standard deviation as the square
+root of the number of samples. But just to be sure, we can verify it by running
+the same profiling session 10 times and calculating [sample standard deviation](http://en.wikipedia.org/wiki/Standard_deviation#With_sample_standard_deviation)
+for the number of samples attributed to each function.
+<table>
+<th>function<th colspan="10">time spent in the function, measured in oprofile samples<th>mean<th>sample<br>stddev<th>sqrt(mean)
+<tr><td>jpeg_idct_islow<td>52105<td>52171<td>51968<td>52243<td>52389<td>52126<td>52347<td>52217<td>52078<td>52543<td>52218.7<td>169.2<td>228.5
+<tr><td>decode_mcu<td>15126<td>15119<td>15315<td>15060<td>15108<td>15397<td>15227<td>15017<td>15175<td>15138<td>15168.2<td>115.8<td>123.2
+<tr><td>decompress_onepass<td>2029<td>2042<td>2070<td>2012<td>2057<td>2127<td>2022<td>2074<td>2048<td>1992<td>2047.3<td>37.98<td>45.25
+<tr><td>fill_bit_buffer<td>333<td>311<td>333<td>311<td>334<td>297<td>309<td>309<td>336<td>304<td>317.7<td>14.63<td>17.82
+</table>
+By comparing the last two columns in the table, we can see that the values there
+are reasonably close to each other. So assuming a stable test environment with no
+background activity from the other processes, etc., we can run just one profiling
+session and already have a good estimate for the precision of the measurement for
+each function. Still it is a good idea to repeat profiling at least one more time
+and check if the results are consistent between runs in order to rule out any
+possible interference from the external factors or the problems in the whole
+setup (see the 'ARM Cortex-A8 performance monitoring unit disaster' section).
+If the results are not consistent across runs, it makes sense identifying and
+eliminating the source of this noise.
+
+Also the applicability of the Poisson based standard deviation estimate is limited
+to the functions which take a reasonably small percentage of time (as wikipedia
+article says: <i>"The Poisson distribution can be applied to systems with a large
+number of possible events, each of which is rare. A classic example is the nuclear decay
+of atoms"</i>). And if taking a corner case as an example, if oprofile log shows
+that all the samples belong only to a single function ('main'), then the precision
+of this measurement would be very high and only depend on the timer resolution.
+The number of samples would be equal to the time taken by the process multiplied
+by the oprofile samples collection frequency. But on a positive side, sqrt(N)
+still provides a reliable pessimistic estimate, with the real standard deviation
+being lower than that.
