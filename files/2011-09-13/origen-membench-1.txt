@@ -1,0 +1,94 @@
+ssvb-membench v0.1 (simple benchmark for memory throughput and latency)
+
+===================================================================
+== Memory bandwidth tests (non-aliased buffers)                  ==
+==                                                               ==
+== Note 1: 1MB = 1000000 bytes                                   ==
+== Note 2: Results for 'copy' tests show how many bytes can be   ==
+==         copied per second (adding together read and writen    ==
+==         bytes would have provided twice higher numbers)       ==
+===================================================================
+
+    C copy backwards                                       :   223.81 MB/s
+    C copy                                                 :   720.94 MB/s
+    C copy prefetched (32 bytes step)                      :   738.59 MB/s
+    C copy prefetched (64 bytes step)                      :   740.06 MB/s
+    C copy via tmp buffer                                  :   547.88 MB/s
+    C copy via tmp buffer prefetched (32 bytes step)       :   598.94 MB/s
+    C copy via tmp buffer prefetched (64 bytes step)       :   599.08 MB/s
+    C fill                                                 :  1594.04 MB/s
+    ---
+    standard memcpy                                        :   735.66 MB/s
+    standard memset                                        :  1594.07 MB/s
+    ---
+    NEON copy                                              :   677.68 MB/s
+    NEON copy prefetched (32 bytes step)                   :   746.29 MB/s
+    NEON copy prefetched (64 bytes step)                   :   761.86 MB/s
+    NEON copy backwards                                    :   230.03 MB/s
+    NEON copy backwards prefetched (32 bytes step)         :   564.95 MB/s
+    NEON copy backwards prefetched (64 bytes step)         :   391.13 MB/s
+    NEON copy via tmp buffer                               :   535.48 MB/s
+    NEON copy via tmp buffer prefetched (32 bytes step)    :   606.24 MB/s
+    NEON copy via tmp buffer prefetched (64 bytes step)    :   597.85 MB/s
+    NEON fill                                              :  1594.01 MB/s
+
+===================================================================
+== Memory bandwidth tests (normal, potentially aliased buffers) ===
+== WARNING: the results below are likely bogus, especially if   ===
+==          obtained on a freshly rebooted system               ===
+===================================================================
+
+    C copy backwards                                       :   197.63 MB/s
+    C copy                                                 :   670.13 MB/s
+    C copy prefetched (32 bytes step)                      :   704.18 MB/s
+    C copy prefetched (64 bytes step)                      :   705.67 MB/s
+    C copy via tmp buffer                                  :   534.94 MB/s
+    C copy via tmp buffer prefetched (32 bytes step)       :   597.75 MB/s
+    C copy via tmp buffer prefetched (64 bytes step)       :   597.61 MB/s
+    C fill                                                 :  1594.22 MB/s
+    ---
+    standard memcpy                                        :   697.36 MB/s
+    standard memset                                        :  1593.92 MB/s
+    ---
+    NEON copy                                              :   654.35 MB/s
+    NEON copy prefetched (32 bytes step)                   :   713.25 MB/s
+    NEON copy prefetched (64 bytes step)                   :   724.09 MB/s
+    NEON copy backwards                                    :   213.32 MB/s
+    NEON copy backwards prefetched (32 bytes step)         :   559.06 MB/s
+    NEON copy backwards prefetched (64 bytes step)         :   381.24 MB/s
+    NEON copy via tmp buffer                               :   526.49 MB/s
+    NEON copy via tmp buffer prefetched (32 bytes step)    :   603.37 MB/s
+    NEON copy via tmp buffer prefetched (64 bytes step)    :   580.59 MB/s
+    NEON fill                                              :  1593.93 MB/s
+
+==========================
+== Memory latency test ===
+==========================
+
+block size : random read access time
+         2 : 0.0 ns
+         4 : 0.0 ns
+         8 : 0.0 ns
+        16 : 0.0 ns
+        32 : 0.0 ns
+        64 : 0.0 ns
+       128 : 0.0 ns
+       256 : 0.0 ns
+       512 : 0.0 ns
+      1024 : 0.0 ns
+      2048 : 0.0 ns
+      4096 : 0.0 ns
+      8192 : 0.0 ns
+     16384 : 0.0 ns
+     32768 : 0.2 ns
+     65536 : 9.2 ns
+    131072 : 13.9 ns
+    262144 : 19.0 ns
+    524288 : 21.7 ns
+   1048576 : 29.6 ns
+   2097152 : 87.6 ns
+   4194304 : 119.3 ns
+   8388608 : 136.9 ns
+  16777216 : 149.7 ns
+  33554432 : 158.9 ns
+  67108864 : 167.9 ns

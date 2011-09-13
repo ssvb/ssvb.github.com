@@ -6,6 +6,7 @@ files, the following directories and their contents
 are Copyright Siarhei Siamashka. You may not reuse
 anything therein without my permission:
  * _posts/
+ * files/
  * images/
 
 The rest of the jekyll blog-generator related files in
