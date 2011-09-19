@@ -115,7 +115,7 @@ The table below shows how the memory performance is affected by different settin
 <table>
 <th>Prefetch Control Register settings
 <th>Memory copy performance
-<th>Latency of random accesses
+<th>Latency of random accesses in 64 MiB block
 <tr><td><a href="http://ssvb.github.com/files/2011-09-13/origen-membench-1.txt">0x30000007 (linaro kernel default)</a>
 <td>761.86 MB/s<td>167.9 ns
 <tr><td><a href="http://ssvb.github.com/files/2011-09-13/origen-membench-2.txt">0x30000007 + "Double linefill enable"</a>
@@ -127,8 +127,8 @@ The table below shows how the memory performance is affected by different settin
 Setting "Double linefill on WRAP read disable" regains some of the random access
 latency with no regressions to sequential copy performance. Assuming that there are
 no hardware bugs related to this setup, enabling double linefill is a no-brainer.
-I have submitted a patch to linaro-dev mailing list:<br>
-[http://lists.linaro.org/pipermail/linaro-dev/2011-September/007462.html](http://lists.linaro.org/pipermail/linaro-dev/2011-September/007462.html)
+I have submitted [a patch to linaro-dev mailing list](http://lists.linaro.org/pipermail/linaro-dev/2011-September/007462.html)
+(<b>update from 2011-09-19:</b> according to the provided feedback, appears that [double linefill is not used for a good reason](http://lists.linaro.org/pipermail/linaro-dev/2011-September/007506.html)).
 
 Probably some more memory performance tweaks can be still applied and
 a better configuration can be found by trying different permutations
@@ -137,6 +137,7 @@ of the bits in:
 * [Cortex-A9, Auxiliary Control Register](http://infocenter.arm.com/help/topic/com.arm.doc.ddi0388g/CIHCHFCG.html)
 * [L2C-310 Level 2 Cache Controller, Auxiliary Control Register](http://infocenter.arm.com/help/topic/com.arm.doc.ddi0246f/Beifcidc.html)
 * [L2C-310 Level 2 Cache Controller, Prefetch Control Register](http://infocenter.arm.com/help/topic/com.arm.doc.ddi0246f/CHDHIECI.html)
+
 
 ### And finally STREAM benchmark as a bonus
 
@@ -167,4 +168,5 @@ Triad:       2679.3174       0.0180       0.0179       0.0180
 {% endhighlight %}
 
 Overall, the [memory performance of Origenboard](http://ssvb.github.com/files/2011-09-13/origen-membench-3.txt)
-appears to be not very much inferior to the [memory performance of Intel Atom N450](http://ssvb.github.com/files/2011-09-13/atom-membench.txt).
+appears to be not very much inferior to the [memory performance of Intel Atom N450](http://ssvb.github.com/files/2011-09-13/atom-membench.txt)
+(<b>update from 2011-09-19</b>: when/if we get Exynos 4212 based boards in our hands).
