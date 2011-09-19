@@ -148,3 +148,12 @@ stdout=serial
 But in order to get login prompt on serial console, <b>s3c2410_serial2</b> (not <b>ttySAC2</b>) needs to be added to /etc/inittab and /etc/securetty. That's a bit weird, but I have not tried to look into it yet.
 
 Finally turn on the board by pressing <b>switch</b> and then <b>power</b> button.
+
+#### Update from 2011-09-19
+
+Linaro kernel is getting better. Now it supports cpufreq (using 1.2GHz CPU clock frequency is possible), has
+a somewhat working USB support (is very slow and sometimes gets stuck for a few seconds), and a somewhat
+usable HDMI output which is hardcoded to use 1920x1080 resolution and use only a small 1024x600 area in
+the center. Still compared to the initial state, it is a major improvement.
+
+I guess, everything is going to be in a much better shape in a few more months.
