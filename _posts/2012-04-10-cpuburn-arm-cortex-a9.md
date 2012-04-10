@@ -39,14 +39,14 @@ main:
 
 #ifdef __linux__
         mov         r0, 84 /* _SC_NPROCESSORS_ONLN */
-        bl          sysconf
+        blx         sysconf
         mov         r4, r0
         cmp         r4, #2
         blt         1f
-        bl          fork /* have at least 2 cores */
+        blx         fork /* have at least 2 cores */
         cmp         r4, #4
         blt         1f
-        bl          fork /* have at least 4 cores */
+        blx         fork /* have at least 4 cores */
 1:
 #endif
 
