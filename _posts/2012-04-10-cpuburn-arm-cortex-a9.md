@@ -17,7 +17,71 @@ I could have stopped at this point, but that would be not fun :) So I tried to e
 that Cortex-A9 can actually run a bit hotter. On the NEON side, <b>VLDx</b> instructions seem to be more power hungry than anything else
 by a large margin. And aligned 128-bit reads are the best at generating heat. Using <b>VLD2</b> variant with
 post-increment makes it do a bit more work than the plain <b>VLD1</b>. Moving to the ARM side, conditional branches and <b>SMLAL</b>
-instructions are also rather hot. Mixing everything together, we get [one more implementation of cpuburn for Cortex-A9](http://ssvb.github.com/files/2012-10-04/ssvb-cpuburn-a9.S).
+instructions are also rather hot. Mixing everything together, we get [one more implementation of cpuburn for Cortex-A9](http://github.com/downloads/ssvb/ssvb.github.com/ssvb-cpuburn-a9.S):
+{% highlight text %}
+    .syntax unified
+    .text
+    .arch armv7-a
+    .fpu neon
+    .arm
+
+    .global main
+    .global sysconf
+    .global fork
+
+/* optimal value for LOOP_UNROLL_FACTOR seems to be BTB size dependent */
+#define LOOP_UNROLL_FACTOR   110
+/* 64 seems to be a good choice */
+#define STEP                 64
+
+.func main
+main:
+
+#ifdef __linux__
+        mov         r0, 84 /* _SC_NPROCESSORS_ONLN */
+        bl          sysconf
+        mov         r4, r0
+        cmp         r4, #2
+        blt         1f
+        bl          fork /* have at least 2 cores */
+        cmp         r4, #4
+        blt         1f
+        bl          fork /* have at least 4 cores */
+1:
+#endif
+
+        ldr         lr, =(STEP * 4 + 15)
+        subs        lr, sp, lr
+        bic         lr, lr, #15
+        mov         ip, #STEP
+        mov         r0, #0
+        mov         r1, #0
+        mov         r2, #0
+        mov         r3, #0
+        ldr         r4, =0xFFFFFFFF
+        b           0f
+    .ltorg
+0:
+    .rept LOOP_UNROLL_FACTOR
+        vld2.8      {q0}, [lr, :128], ip
+        it          ne
+        smlalne     r0, r1, lr, r4
+        bne         1f
+1:
+        vld2.8      {q1}, [lr, :128], ip
+        it          ne
+        smlalne     r2, r3, lr, r4
+        bne         1f
+1:
+        vld2.8      {q2}, [lr, :128], ip
+        vld2.8      {q3}, [lr, :128], ip
+        it          ne
+        subsne      lr, lr, #(STEP * 4)
+    .endr
+        bne         0b
+.endfunc
+{% endhighlight text %}
+
 Maybe more improvements are still possible if I overlooked some better instructions, tricks with L2->L1 prefetches or anything else.
 Also I have not tried running any tests on Cortex-A8 yet. But Cortex-A8 needs different tuning and I would not be
 surprised if the the older cpuburn implementations can actually do a better job there. Finally,
@@ -37,7 +101,7 @@ not dare to even try additionally stressing GPU and/or the hardware video decode
 <td>~1130 mA
 <tr><td><a href="http://packages.debian.org/sid/cpuburn">cpuburn-1.4a</a> (burnCortexA9.s)
 <td>~1180 mA
-<tr><td><a href="http://ssvb.github.com/files/2012-10-04/ssvb-cpuburn-a9.S">ssvb-cpuburn-a9.S</a>
+<tr><td><a href="http://github.com/downloads/ssvb/ssvb.github.com/ssvb-cpuburn-a9.S">ssvb-cpuburn-a9.S</a>
 <td><b>~1640 mA</b>
 </table>
 <br>
