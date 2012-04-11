@@ -125,4 +125,12 @@ This time experimenting with DM3730 based [IGEPv2 board](http://igep.es/index.ph
 <tr><td><a href="http://github.com/downloads/ssvb/ssvb.github.com/ssvb-cpuburn-a8.S">ssvb-cpuburn-a8.S</a>
 <td><b>~104.25 C</b>
 </table>
-If the sensor is not lying, then maybe using a plastic case for this board was not a good choice after all.
+<strike>If the sensor is not lying, then maybe using a plastic case for this board was not a good choice after all.</strike> The sensor is most likely lying as explained by Nishanth Menon in the [google+ comments](https://plus.google.com/u/0/113201731981878354205/posts/44WtAFbQcaK).
+
+### Final words (added on 2011-04-11)
+
+Before anybody jumps to wild conclusions, I would like to note that:<ul>
+<li>Pandaboard is not a mobile device and it is not designed for really low power consumption. It is a known fact that it [requires a PSU rated at 4A](http://omappedia.org/wiki/PandaBoard_FAQ#What_are_the_specs_of_the_Power_supply_I_should_use_with_a_PandaBoard.3F). I don't have any idea where most of the heat is dissipated, but it is quite likely that not only OMAP chip is involved.</li>
+<li>Cpuburn is very different from any typical workload and can't be used for estimating power consumption. It's just a hardware reliability testing tool</li>
+</ul>
+<br>
