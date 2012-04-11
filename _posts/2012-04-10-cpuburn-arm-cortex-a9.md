@@ -105,3 +105,24 @@ not dare to even try additionally stressing GPU and/or the hardware video decode
 <td><b>~1640 mA</b>
 </table>
 <br>
+
+### And also a cpuburn tweak for ARM Cortex-A8 (added on 2011-04-11)
+
+A quick test on Cortex-A8 shows that using <b>SMLAL</b> is a bad idea there, but extra NEON arithmetic instructions
+can be added because Cortex-A8 supports dual issue for NEON.
+
+This time experimenting with DM3730 based [IGEPv2 board](http://igep.es/index.php?option=com_content&view=article&id=46&Itemid=55)
+(ARM Cortex-A8 @1GHz) and using [dm3730-temp-sensor](https://github.com/mrj10/dm3730-temp-sensor) for temperature measurements:
+<table>
+<th>cpuburn implementation
+<th>temperature
+<tr><td>idle system (this kernel has no power management)
+<td>~57.75 C
+<tr><td><a href="http://hardwarebug.org/files/burn.S">cpuburn-neon</a>
+<td>~92.75 C
+<tr><td><a href="http://packages.debian.org/sid/cpuburn">cpuburn-1.4a</a> (burnCortexA8.s)
+<td>~96.00 C
+<tr><td><a href="http://github.com/downloads/ssvb/ssvb.github.com/ssvb-cpuburn-a8.S">ssvb-cpuburn-a8.S</a>
+<td><b>~104.25 C</b>
+</table>
+If the sensor is not lying, then maybe using a plastic case for this board was not a good choice after all.
