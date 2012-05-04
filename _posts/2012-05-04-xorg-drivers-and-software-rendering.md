@@ -416,11 +416,12 @@ cairo-perf-trace is in a more human readable text format. CAIRO_TEST_TARGET envi
 * Your mileage may vary, but a lot of simple and very common 2D operations do not need a lot of
 processing power (even one CPU core is excessive). On the other hand, memory bandwidth is
 critical and directly affects performance.
+* On multi-core systems, software rendering in X server may play the role of a 2D accelerator to some extent
 * Good quality scaling, rotation, radial gradients, convolution filters and the other processing
 power hungry operations benefit from GPU acceleration. CPU may obviously also try
 multithreaded rendering for these operations to take advantage of all CPU
-cores (multithreaded rendering is still not supported in pixman).
+cores, but multithreaded rendering is still not supported in pixman.
 * The pvr xorg driver is not ready for OMAP3 hardware yet, do not use it
 * Disabled acceleration does not always mean full speed software rendering, so if your driver
-provides an option to disable acceleration, in can't be fully trusted
+provides an option to disable acceleration, it can't be fully trusted
 * Immediate mode renderers such as cairo are a hard challenge for hardware acceleration
