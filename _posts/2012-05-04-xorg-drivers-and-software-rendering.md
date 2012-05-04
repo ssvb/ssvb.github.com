@@ -335,10 +335,10 @@ in the following table:
 All the operations performed on GPU and also [software rendered
 Add](http://cgit.freedesktop.org/pixman/tree/pixman/pixman-sse2.c?id=pixman-0.22.0#n1321) run at approximately
 the same speed, [software rendered Over](http://cgit.freedesktop.org/pixman/tree/pixman/pixman-sse2.c?id=pixman-0.22.0#n630)
-falls behind. It is integrated graphics, so both CPU and GPU are using the same memory,
+falls behind. It is integrated graphics, both CPU and GPU are using the same memory,
 so it is not surprising that they both have the same memory performance limit. GPU strength
 is in handling operations which need more heavy computations. And it is able to fully utilize
-memory bandwidth regardless of the use of scaling. And this is how a really good hardware
+memory bandwidth regardless of the use of scaling. This is how a really good hardware
 accelerated driver should behave.
 
 ## Reproducing these test results and charts
