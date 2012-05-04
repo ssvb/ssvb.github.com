@@ -7,7 +7,7 @@ title: Xorg drivers, software rendering for 2D graphics and cairo 1.12 performan
 ================
 
 Recently [cairo graphics library](http://en.wikipedia.org/wiki/Cairo_%28graphics%29) got an [update to version 1.12](http://cairographics.org/news/cairo-1.12.0/).
-It brings some nice performance improvements as in 
+It brings some nice performance improvements as demonstrated in 
 [three](http://ickle.wordpress.com/2012/03/28/cairo-1-12-let-the-releases-roll/)
 [blog](http://ickle.wordpress.com/2012/03/30/cairo-performance-on-ion/)
 [posts](http://ickle.wordpress.com/2012/04/02/cairo-performance-on-radeon/) from Chris Wilson.
