@@ -1,0 +1,68 @@
+Available XRENDER filters:
+nearest
+bilinear
+convolution
+fast
+good
+best
+Setup...
+*** ROUND 1 ***
+---------------------------------------------------------------
+Test: Test Xrender doing non-scaled Over blends
+Time: 1.331 sec.
+---------------------------------------------------------------
+Test: Test Xrender (offscreen) doing non-scaled Over blends
+Time: 1.228 sec.
+---------------------------------------------------------------
+Test: Test Imlib2 doing non-scaled Over blends
+Time: 1.163 sec.
+*** ROUND 2 ***
+---------------------------------------------------------------
+Test: Test Xrender doing 1/2 scaled Over blends
+Time: 1.070 sec.
+---------------------------------------------------------------
+Test: Test Xrender (offscreen) doing 1/2 scaled Over blends
+Time: 0.477 sec.
+---------------------------------------------------------------
+Test: Test Imlib2 doing 1/2 scaled Over blends
+Time: 0.402 sec.
+*** ROUND 3 ***
+---------------------------------------------------------------
+Test: Test Xrender doing 2* smooth scaled Over blends
+Time: 50.689 sec.
+---------------------------------------------------------------
+Test: Test Xrender (offscreen) doing 2* smooth scaled Over blends
+Time: 25.250 sec.
+---------------------------------------------------------------
+Test: Test Imlib2 doing 2* smooth scaled Over blends
+Time: 14.255 sec.
+*** ROUND 4 ***
+---------------------------------------------------------------
+Test: Test Xrender doing 2* nearest scaled Over blends
+Time: 14.044 sec.
+---------------------------------------------------------------
+Test: Test Xrender (offscreen) doing 2* nearest scaled Over blends
+Time: 4.154 sec.
+---------------------------------------------------------------
+Test: Test Imlib2 doing 2* nearest scaled Over blends
+Time: 5.295 sec.
+*** ROUND 6 ***
+---------------------------------------------------------------
+Test: Test Xrender doing general nearest scaled Over blends
+Time: 19.964 sec.
+---------------------------------------------------------------
+Test: Test Xrender (offscreen) doing general nearest scaled Over blends
+Time: 6.035 sec.
+---------------------------------------------------------------
+Test: Test Imlib2 doing general nearest scaled Over blends
+Time: 8.922 sec.
+*** ROUND 7 ***
+---------------------------------------------------------------
+Test: Test Xrender doing general smooth scaled Over blends
+Time: 111.781 sec.
+---------------------------------------------------------------
+Test: Test Xrender (offscreen) doing general smooth scaled Over blends
+Time: 55.504 sec.
+---------------------------------------------------------------
+Test: Test Imlib2 doing general smooth scaled Over blends
+Time: 57.080 sec.

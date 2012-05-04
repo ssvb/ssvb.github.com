@@ -12,10 +12,10 @@ It brings some nice performance improvements as in
 [blog](http://ickle.wordpress.com/2012/03/30/cairo-performance-on-ion/)
 [posts](http://ickle.wordpress.com/2012/04/02/cairo-performance-on-radeon/) from Chris Wilson.
 These blog posts additionally showcase [Intel SNA](http://www.phoronix.com/scan.php?page=news_item&px=OTUyOQ), which
-happens to be quite an impressive [DDX](http://www.x.org/wiki/Development/Documentation/Glossary#DDX) driver and
-can provide 2D graphics hardware acceleration for X applications via
+happens to be quite an impressive [DDX](http://www.x.org/wiki/Development/Documentation/Glossary#DDX) driver. It
+provides 2D graphics hardware acceleration for X applications via
 [XRender extension](http://en.wikipedia.org/wiki/X_Rendering_Extension) and is
-clearly doing it faster than software rendering.
+clearly doing this faster than software rendering.
 
 It may really surprise some people, but graphics drivers are generally doing
 not so great for 2D acceleration on linux desktop systems. This has
@@ -131,7 +131,7 @@ render_bench (with a [bugfix](https://github.com/ssvb/render_bench/commit/a72b75
 which stresses simple scaled and non-scaled compositing using [Over operator](http://en.wikipedia.org/wiki/Alpha_compositing).
 In other words, that's one of the most basic operations for 2D graphics (commonly used for translucency effects),
 which is expected to be properly accelerated by any driver. Test results for the fbdev driver and for the pvr
-driver (with and without "NoAccel" option set in xorg.conf) are listed in the table below.
+driver (with and without "NoAccel" option set in xorg.conf) are listed in the table below ([render_bench logs are here](https://github.com/ssvb/ssvb.github.com/tree/master/files/2012-05-04/render-bench-cortex-a8)).
 Each test was also repeated with and without NEON SIMD optimizations enabled in pixman. And an interesting bonus comparison is
 imlib2 vs. pixman C implementation (CFLAGS="-O2 -mcpu=cortex-a8 -mfloat-abi=softfp -mfpu=neon" for both pixman and imlib2):
 <table border=1 style='border-collapse: collapse; empty-cells: show; font-family: arial; font-size: small; white-space: nowrap; background: #F0F0F0;'>
@@ -355,8 +355,8 @@ $ make
 $ cd perf
 $ make cairo-perf-chart
 {% endhighlight sh %}
-This will get us "cairo-perf-chart" tool, which can be used to generate nice PNG charts
-such as the ones used in this blog.
+This will get us "cairo-perf-chart" tool, which can be used to generate nice PNG charts from cairo-perf-trace logs.
+The cairo-perf-trace logs used for the charts in this blog post are [available here](https://github.com/ssvb/ssvb.github.com/tree/master/files/2012-05-04/cairo-perf-trace).
 
 Compiling cairo library and running the benchmarks can be done in the following way.
 Obviously, the system needs to have a compiler and some of the build dependencies
@@ -422,5 +422,5 @@ multithreaded rendering for these operations to take advantage of all CPU
 cores (multithreaded rendering is still not supported in pixman).
 * The pvr xorg driver is not ready for OMAP3 hardware yet, do not use it
 * Disabled acceleration does not always mean full speed software rendering, so if your driver
-provides an option ot disable acceleration, in can't be fully trusted
+provides an option to disable acceleration, in can't be fully trusted
 * Immediate mode renderers such as cairo are a hard challenge for hardware acceleration

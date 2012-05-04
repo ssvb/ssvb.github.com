@@ -1,0 +1,25 @@
+pixman: Disabled arm-simd implementation
+pixman: Disabled arm-neon implementation
+[ # ] backend.content test-size ticks-per-ms time(ticks) ...
+[ # ] image: pixman 0.25.2
+[*] image.rgba poppler.0 1e+06 29552703857 26450408935 26507171631
+[*] image.rgba xfce4-terminal-a1.0 1e+06 36010192871 35043518067 35037414551
+[*] image.rgba gnome-system-monitor.0 1e+06 31900848388 30937652588 30876617432
+[*] image.rgba firefox-paintball.0 1e+06 1755287872314 1752972381592 1753904449463
+[*] image.rgba firefox-canvas.0 1e+06 257974609375 254751251221 254830780030
+[*] image.rgba firefox-asteroids.0 1e+06 75488403321 70808013916 70770477295
+[*] image.rgba evolution.0 1e+06 25614044189 23189361572 23226654052
+[*] image.rgba firefox-fishtank.0 1e+06 1648725402832 1645364654541 1643345306397
+[*] image.rgba swfdec-giant-steps.0 1e+06 10975067139 10418518066 10415527344
+[*] image.rgba firefox-talos-gfx.0 1e+06 111137298584 107797851562 107644500732
+[*] image.rgba midori-zoomed.0 1e+06 19439270019 17900146484 17676696777
+[*] image.rgba firefox-canvas-alpha.0 1e+06 590555908203 587699890136 587649688721
+[*] image.rgba firefox-planet-gnome.0 1e+06 133182312011 128195770263 128190246582
+[*] image.rgba firefox-particles.0 1e+06 949972503662 934562988282 937639282227
+[*] image.rgba grads-heat-map.0 1e+06 2079101563 1456939698 1454864502
+[*] image.rgba gvim.0 1e+06 36190887452 32811920166 33117187500
+[*] image.rgba firefox-talos-svg.0 1e+06 545601104736 532373687744 532609222412
+[*] image.rgba swfdec-youtube.0 1e+06 38202972412 36712768554 36709930420
+[*] image.rgba gnome-terminal-vim.0 1e+06 40189941407 38751037598 38726684570
+[*] image.rgba firefox-fishbowl.0 1e+06 1294606964111 1282966705322 1281824645996
+[*] image.rgba poppler-reseau.0 1e+06 4809112549 4252319335 4241943359
