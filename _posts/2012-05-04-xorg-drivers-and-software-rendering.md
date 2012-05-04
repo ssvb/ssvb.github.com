@@ -22,20 +22,20 @@ not so great for 2D acceleration on linux desktop systems. This has
 been known at least since 2003, when Carsten Haitzler (aka Rasterman) started
 [a thread about XRender performance](http://comments.gmane.org/gmane.comp.xfree86.devel/2786)
 and posted [render_bench](http://www.rasterman.com/files/render_bench.tar.gz)
-test program. And [hardware acceleration did not have a clear advantage over software rendering](http://blogs.gnome.org/otte/2010/06/26/fun-with-benchmarks/)
-two years ago for many cairo traces (which are [much more relevant 2D benchmarking tools](http://cworth.org/intel/performance_measurement/)
+test program. Also [hardware acceleration did not have a clear advantage over software rendering](http://blogs.gnome.org/otte/2010/06/26/fun-with-benchmarks/)
+two years ago for many cairo traces (which are [much more relevant for 2D benchmarking](http://cworth.org/intel/performance_measurement/)
 than render_bench). There are some old slides from 2010 presented by Intel
-folks about ["Making the GPU do its Job"](http://www.lca2010.org.nz/slides/50153.pdf) and
-about the challenges to solve. But now this long quest seems to be over and we got really
+folks about ["Making the GPU do its Job"](http://www.lca2010.org.nz/slides/50153.pdf) explaining
+the challenges they were facing at that time. But now this long quest seems to be over and we got really
 good 2D drivers at least for Intel hardware.
 
 But enough with the historical overview. The purpose of this blog post
-is to look into cairo "image backend" in a bit more detail and try to find an
+is to look into cairo "image backend" in a bit more details and try to find an
 explanation why it managed to be competitive for such a long time (and is
 still able to wipe the floor with some poorly implemented GPU accelerated
 drivers even now). Cairo image backend uses [pixman library](http://pixman.org/)
 as a software rasteriser. To speed up the graphics operations, pixman uses SIMD
-optimizations. The most important are SSE2 on x86 and NEON on ARM. There are also
+optimizations. The most relevant are SSE2 on x86 and NEON on ARM. There are also
 optimizations for MIPS32 DSP ASE, Loongson SIMD and ARM IWMMXT being worked on. The
 latest pixman 0.25.2 development snapshot allows to
 [selectively disable SIMD optimizations](http://cgit.freedesktop.org/pixman/commit/?id=fcea053561893d116a79f41a113993f1f61b58cf)
@@ -57,7 +57,7 @@ The detailed instructions are available in the last section of this blog post.
 
 <a href="/images/2012-05-04-cairo-perf-chart-cortex-a9.png"><img src ="/images/2012-05-04-cairo-perf-chart-cortex-a9-lowres.png" alt="2012-05-04-cairo-perf-chart-cortex-a9.png"</img></a>
 
-Everything is compared to cairo image backend when SIMD optimizations are disabled in pixman (PIXMAN_DISABLE environment variable is set to "arm-simd arm-iwmmxt arm-neon"). The
+On the chart above everything is compared to cairo image backend when SIMD optimizations are disabled in pixman (PIXMAN_DISABLE environment variable is set to "arm-simd arm-iwmmxt arm-neon"). The
 green bars on the left show the performance improvement gained by enabling ARM NEON in pixman when running the tests with cairo image backend. The
 blue bars on the right show the performance of xlib cairo backend when the rendering is done on the X server side by xf86-video-fbdev driver
 (which in turn uses pixman with NEON optimization enabled).
@@ -66,14 +66,14 @@ Looking at these colored bars, we can see that xlib backend is generally perform
 because we have some inter-process communication overhead between the test application and X server, X11 protocol marshalling, etc.
 But a few tests (firefox-asteroids, gnome-terminal-vim, gvim, xfce4-terminal-a1) showed an improvement. The explanation here is
 that this system has a dual-core processor. So the X server running on one CPU core is acting as a 2D accelerator, and the
-test application has another CPU core free for use. If we look at the CPU usage in htop while running the tests, the CPU core
-running Xorg server is ~100% loaded, the other CPU core running cairo-perf-trace process is typically just ~15-30% loaded.
+test application has another CPU core free for use. If we look at the CPU usage in htop while running the tests, then we see that
+the CPU core running Xorg server is ~100% loaded, and the other CPU core running cairo-perf-trace process is typically just ~15-30% loaded.
 
 So in the end, xlib backend is not so bad on multi-core systems. We just need to ensure that we are
 not hit by any unnecessary overhead on the inter-process communication. Are we actually doing well here? Not even close!
 Just look at [this part of code](http://cgit.freedesktop.org/xorg/xserver/tree/fb/fbpict.c?id=xorg-server-1.12.1#n38).
 There we see how X server is wrapping its internal [Picture](http://cgit.freedesktop.org/xorg/xserver/tree/render/picturestr.h?id=xorg-server-1.12.1#n123)
-structure into temporary [pixman_image_t](http://cgit.freedesktop.org/pixman/tree/pixman/pixman-private.h?id=pixman-0.25.2#n65) structures,
+structures into temporary [pixman_image_t](http://cgit.freedesktop.org/pixman/tree/pixman/pixman-private.h?id=pixman-0.25.2#n65) structures,
 involving lots of overhead, validity checks and malloc/free activity. No surprise that we are taking a serious performance
 hit, firefox-canvas trace being the worst.
 
