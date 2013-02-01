@@ -51,7 +51,7 @@ The glmark2 2012.12 scores with 1280x720-32@60Hz monitor resolution look like th
 
 As expected from the implementation which is aware of the hardware overlays
 supported by the display controller, the performance of xf86-video-sunxifb
-in fullscreen mode or fully visible windows is significantly better
+in fullscreen mode or working with fully visible windows is significantly better
 than xf86-video-mali. Though rendering to partially obscured window
 currently goes through the fallback path involving many memory copy
 operations, and the overhead of these memory copy operations is even
@@ -85,7 +85,7 @@ decided that it's a good idea to override the allocation of absolutely
 all pixmaps without exception and not just the ones needed for DRI2. This was a total
 2D performance disaster for the [SGX PVR driver](http://ssvb.github.com/2012/05/04/xorg-drivers-and-software-rendering.html).
 And it is also killing 2D performance for xf86-video-mali. Because
-the sources of xf86-video-mali are availabe, it was possible to run one
+the sources of xf86-video-mali are available, it was possible to run one
 more somewhat artificial test. With a minor tweak, xf86-video-mali can
 be changed to do allocations of pixmaps in cached UMP buffers (let's for
 a moment just ignore the potential cache coherency issues for the buffers
