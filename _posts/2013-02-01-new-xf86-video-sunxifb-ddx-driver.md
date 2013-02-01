@@ -108,7 +108,7 @@ CPU-mapped address for the memory by calling ump_mapped_pointer_get.
 Please refer to UMP documentation for more information regarding this.
 {% endhighlight text %}
 BTW, if anyone has some doubts and wonders if these colored bars
-in the chart are really correlated with reality, I sugest checking
+in the chart are really correlated with reality, I suggest checking
 my youtube video about [Linux on ARM Chromebook: xf86-video-armsoc vs. xf86-video-fbdev](http://www.youtube.com/watch?v=Vzmckw3fAQo).
 The xf86-video-armsoc driver has all the same 2D performance problems :-(
 
