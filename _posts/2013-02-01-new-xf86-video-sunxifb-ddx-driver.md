@@ -121,3 +121,6 @@ pixmaps, while being not the best and cleanest implementation for sure.
 
 XV and XRANDR still need to be implemented. And of course there is still
 a lot of room for real 2D performance improvements :-)
+
+<small>Edited within a few hours after posting to fix some obvious typos, broken
+links and poor wording</small>
