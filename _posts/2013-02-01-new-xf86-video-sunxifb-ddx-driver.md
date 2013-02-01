@@ -16,7 +16,7 @@ Because of a very competitive price, these devices make a good alternative for [
 One rather unique and somewhat attractive feature is that this platform does
 not have a corporate backing and does not suffer from "too many cooks"
 problem :-) All the hardware adaptation support is provided by the
-community at [http://linux-sunxi.org/](linux-sunxi.org), where the people
+community at [http://linux-sunxi.org/](http://linux-sunxi.org/), where the people
 are currently trying to clean up the kernel and fix numerous bugs.
 
 ## 3D graphics performance
@@ -28,7 +28,7 @@ But the integration with the X server is provided by the [open source reference 
 Many users might assume that it's a ready-to-use complete solution and a natural choice for their devices.
 However this is not quite true. The performance of the system is also largely dependent on the
 optimal integration with the display controller hardware, because Mali itself can only render
-3D images to memory buffers. Here is a quote from the readme file included in xf86-video-mali:
+3D images to memory buffers. Here is a quote from the readme file included with xf86-video-mali:
 {% highlight text %}
 xf86-video-mali" is provided as a basis for creating your own X Display
 Driver. It requires a recent version of the xorg-server, as well as a
@@ -41,7 +41,7 @@ of it running on [Mele A2000 TV box](https://plus.google.com/u/0/113201731981878
 
 <a href="/images/2013-02-01-mali400-acceleration.png"><img src ="/images/2013-02-01-mali400-acceleration-lowres.png" alt="2013-02-01-mali400-acceleration.png"</img></a>
 
-The glmark2 2012.12 scores with 1280x720-32@60Hz monitor look like this:
+The glmark2 2012.12 scores with 1280x720-32@60Hz monitor resolution look like this:
 
 <table border=1 style='border-collapse: collapse; empty-cells: show; font-family: arial; font-size: small; white-space: nowrap; background: #F0F0F0;'>
 <tr><th>X11 DDX driver<th>Fullscreen (1280x720)<th>Window (800x600)<th>Partially obscured window (800x600)</tr>
@@ -51,12 +51,12 @@ The glmark2 2012.12 scores with 1280x720-32@60Hz monitor look like this:
 
 As expected from the implementation which is aware of the hardware overlays
 supported by the display controller, the performance of xf86-video-sunxifb
-with fullscreen and fully visible windows is significantly better
+in fullscreen mode or fully visible windows is significantly better
 than xf86-video-mali. Though rendering to partially obscured window
 currently goes through the fallback path involving many memory copy
 operations, and the overhead of these memory copy operations is even
 higher than for xf86-video-mali (mostly because of the use of
-shadow framebuffer).
+the shadow framebuffer).
 
 ## 2D graphics performance
 
@@ -70,10 +70,10 @@ Looks like xf86-video-sunxifb is implementing some great performance optimizatio
 I wish this was the case, but in fact it is basically just the functionality entirely
 provided by the original xf86-video-fbdev code, which was used as
 the base for xf86-video-sunxifb. It merely tries not to get in the
-way and just lets ARM NEON code from [pixman](http://www.pixman.org/)
+way and just lets ARM NEON software rendering code from [pixman](http://www.pixman.org/)
 run without too much extra overhead.
 
-So then what is wrong with the xf86-video-mali? It suffers from the same
+So what is wrong with the xf86-video-mali? Appears that it suffers from the same
 problem as many other X11 drivers for ARM hardware. DRI2 extension
 (the thing which is used for the integration of GLES acceleration)
 needs some hardware-specific buffers allocation
@@ -83,20 +83,20 @@ layer for adding 2D acceleration hooks) supports overriding pixmap
 buffers allocation as part of its functionality. So the guys apparently
 decided that it's a good idea to override the allocation of absolutely
 all pixmaps without exception and not just the ones needed for DRI2. This was a total
-2D performance disaster for the [SGX PVR driver](http://ssvb.github.com/2012/05/04/xorg-drivers-and-software-rendering.html)
-driver. It is also killing performance for xf86-video-mali. But because
-xf86-video-mali is an open source driver, I could run one more test.
-UMP also allows allocation of cached buffers, so with a small tweak
-xf86-video-mali can be changed to do cached allocations instead (let's
-just ignore the potential cache coherency issues for the buffers
-shared with Mali hadrware via DRI2). The benchmark results for
-cached UMP allocations are shown as green bars on the chart above.
-In some cases (t-firefox-fishtank), the performance for cached
-UMP allocations managed to catch up with xf86-video-sunxifb (and
-naturally xf86-video-fbdev). But many other cases are still slow.
-It's not just uncached memory killing performance, the UMP
-allocations themselves also require expensive ioctls and have
-very heavy overhead. So sorry, the following suggestion
+2D performance disaster for the [SGX PVR driver](http://ssvb.github.com/2012/05/04/xorg-drivers-and-software-rendering.html).
+And it is also killing 2D performance for xf86-video-mali. Because
+the sources of xf86-video-mali are availabe, it was possible to run one
+more somewhat artificial test. With a minor tweak, xf86-video-mali can
+be changed to do allocations of pixmaps in cached UMP buffers (let's for
+a moment just ignore the potential cache coherency issues for the buffers
+shared with Mali hardware via DRI2 and only look at the performance). The
+benchmark results for this modified xf86-video-mali driver are shown as
+green bars on the chart above. In some cases (t-firefox-fishtank), the
+performance for cached UMP allocations managed to catch up with
+xf86-video-sunxifb (and xf86-video-fbdev). But many other traces are still
+slow, which suggests that uncached memory allocation is not the only
+reason for poor performance. The UMP itself also requires expensive ioctls
+and has very heavy overhead. So sorry, the following suggestion
 from xf86-video-mali readme file is simply not going to fly:
 {% highlight text %}
 The provided "xf86-video-mali" driver contains an EXA module which has been
