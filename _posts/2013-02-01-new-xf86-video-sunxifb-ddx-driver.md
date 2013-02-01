@@ -66,7 +66,7 @@ on the results from [cairo-perf-trace running trimmed-cairo-traces](https://gith
 
 <a href="/images/2013-02-01-cairo-perf-chart-sunxifb.png"><img src ="/images/2013-02-01-cairo-perf-chart-sunxifb-lowres.png" alt="2013-02-01-cairo-perf-chart-sunxifb.png"</img></a>
 
-Looks xf86-video-sunxifb is implementing some great performance optimizations?
+Looks like xf86-video-sunxifb is implementing some great performance optimizations?
 I wish this was the case, but in fact it is basically just the functionality entirely
 provided by the original xf86-video-fbdev code, which was used as
 the base for xf86-video-sunxifb. It merely tries not to get in the
@@ -76,7 +76,7 @@ run without too much extra overhead.
 So then what is wrong with the xf86-video-mali? It suffers from the same
 problem as many other X11 drivers for ARM hardware. DRI2 extension
 (the thing which is used for the integration of GLES acceleration)
-needs some specific, hardware-specific buffers allocation
+needs some hardware-specific buffers allocation
 ([UMP](http://malideveloper.arm.com/develop-for-mali/drivers/open-source-mali-gpus-ump-user-space-drivers-source-code-2/)
 in the case of xf86-video-mali). And EXA framework (a convenience
 layer for adding 2D acceleration hooks) supports overriding pixmap
