@@ -141,7 +141,7 @@ We can't test all the possible configurations, so just need to pick a few intere
 </ul>
 <p><div class="image">
 <center><b>Chart 1. The results of cairo-perf-trace using 'image' backend (on Allwinner A10, ARM Cortex-A8 @1GHz)</b></center>
-<a href="/images/2013-06-27-cairo-perf-chart.png"><img src ="/images/2013-06-27-cairo-perf-chart-lowres.png" alt="2013-06-27-cairo-perf-chart.png"></a>
+<a href="http://ssvb.github.io/images/2013-06-27-cairo-perf-chart.png"><img src ="http://ssvb.github.io/images/2013-06-27-cairo-perf-chart-lowres.png" alt="2013-06-27-cairo-perf-chart.png"></a>
 </div></p>
 
 The chart 1 is showing the performance improvements relative to Mele A2000 with its more than
