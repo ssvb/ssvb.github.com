@@ -41,7 +41,7 @@ the dual monitor support is outside of the scope of this blog post. Anyway, is 5
 or not? Allwinner A10 uses 32-bit DDR3 memory, clocked between 360 MHz and
 480 MHz (the default memory clock speed is different for different devices). Which means that
 the theoretical memory bandwidth limit is between 2.9 GB/s and 3.8 GB/s. So in theory we should
-be perfectly fine? It can't be a bad idea to verify this.
+be perfectly fine?
 
 ## Synthetic tests for the monitor refresh induced memory bandwidth loss
 
