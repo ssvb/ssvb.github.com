@@ -5,10 +5,10 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Siarhei Siamashka</title>
- <link href="http://ssvb.github.com/"/>
- <link type="application/atom+xml" rel="self" href="http://ssvb.github.com/atom.xml"/>
+ <link href="http://ssvb.github.io/"/>
+ <link type="application/atom+xml" rel="self" href="http://ssvb.github.io/atom.xml"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://ssvb.github.com/</id>
+ <id>http://ssvb.github.io/</id>
  <author>
    <name>Siarhei Siamashka</name>
    <email>siarhei.siamashka@gmail.com</email>
@@ -16,13 +16,13 @@ layout: nil
 
  {% for post in site.posts %}
  <entry>
-   <id>http://ssvb.github.com{{ post.id }}</id>
-   <link type="text/html" rel="alternate" href="http://ssvb.github.com{{ post.url }}"/>
+   <id>http://ssvb.github.io{{ post.id }}</id>
+   <link type="text/html" rel="alternate" href="http://ssvb.github.io{{ post.url }}"/>
    <title>{{ post.title }}</title>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
     <author>
       <name>Siarhei Siamashka</name>
-      <uri>http://ssvb.github.com/</uri>
+      <uri>http://ssvb.github.io/</uri>
     </author>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
