@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Is your ARM Cortex-A9 hot enough?
-categories : [arm, cpuburn, assembly]
 ---
 
 {{ page.title }}

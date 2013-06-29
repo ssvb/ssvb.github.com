@@ -1,7 +1,6 @@
 ---
 layout: post
 title: SIMD DCT/IDCT in libjpeg-turbo and bit-exactness
-categories : [jpeg, neon, sse2, assembly, performance]
 ---
 
 {{ page.title }}

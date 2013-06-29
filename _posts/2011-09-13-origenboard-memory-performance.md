@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Origenboard, memory performance
-categories : [arm, samsung, performance]
 ---
 
 {{ page.title }}

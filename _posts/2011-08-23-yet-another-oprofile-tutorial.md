@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Yet another oprofile tutorial
-categories : [tools, tutorial, performance]
 ---
 
 {{ page.title }}

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Discovering instructions scheduling secrets
-categories : [arm, x86, mips, assembly, performance]
 ---
 
 {{ page.title }}
