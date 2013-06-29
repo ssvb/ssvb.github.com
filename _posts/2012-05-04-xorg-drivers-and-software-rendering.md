@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Xorg drivers, software rendering for 2D graphics and cairo 1.12 performance
+categories : [x11, 2d, performance, neon, sse2, ti, intel]
 ---
 
 {{ page.title }}
