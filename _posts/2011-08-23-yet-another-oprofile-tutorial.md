@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Yet another oprofile tutorial
+tags: [tools, tutorial, performance]
 ---
 
 {{ page.title }}

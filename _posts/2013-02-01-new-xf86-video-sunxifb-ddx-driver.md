@@ -1,6 +1,7 @@
 ---
 layout: post
 title: New xf86-video-sunxifb DDX driver for Xorg
+tags: [x11, allwinner, gles, 2d, performance]
 ---
 
 {{ page.title }}

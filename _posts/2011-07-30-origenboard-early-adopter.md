@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Origenboard, early adopter impressions
+tags: [arm, samsung]
 ---
 
 {{ page.title }}
