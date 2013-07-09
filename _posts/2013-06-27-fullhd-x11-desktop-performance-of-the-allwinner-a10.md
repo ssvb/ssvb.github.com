@@ -181,6 +181,17 @@ The 256 TLB entries in Cortex-A7 compared to just 32 in Cortex-A8 look very much
 like a hardware workaround for a software problem :-) But even older processors
 such as Cortex-A8 still need to be fast.
 
+<b>Update</b>: turns out that the significantly better benchmark results
+can't be credited to the use of the huge pages alone. The "hugectl" tool from
+libhugetlbfs overrides glibc heap allocation and by default does not ever return
+memory to the system. While heap shrink/grow operations performed in normal
+conditions (without hugectl) are not particularly cheap in some cases.
+In any case, the primary purpose of using huge pages via hugectl
+was to ensure reproducible cairo-perf-trace benchmark results, and it did
+the job. Still TLB misses are a major problem for some operations with 2D
+graphics. Something like drawing a vertical scrollbar, where accessing each
+new scanline triggers a TLB miss with 4KiB pages. Or image rotation.
+
 ## So what can be done?
 
 The 32bpp color depth with 1920x1080 resolution on Allwinner A10 is quite unfortunate
