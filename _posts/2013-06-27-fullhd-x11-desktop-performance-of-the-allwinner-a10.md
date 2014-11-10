@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  FullHD X11 desktop performance of the Allwinner A10
-tags: [x11, allwinner, 2d, performance]
+tags: [x11, allwinner, 2d, performance, dram]
 ---
 
 {{ page.title }}

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Origenboard, memory performance
-tags: [arm, samsung, performance]
+tags: [arm, samsung, performance, dram]
 ---
 
 {{ page.title }}
