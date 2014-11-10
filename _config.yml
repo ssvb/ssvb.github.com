@@ -1,2 +1,4 @@
 markdown: rdiscount
 pygments: true
+url: http://ssvb.github.io
+excerpt_separator: <!--more-->
