@@ -4,9 +4,6 @@ title: SIMD DCT/IDCT in libjpeg-turbo and bit-exactness
 tags: [jpeg, neon, sse2, assembly, performance]
 ---
 
-{{ page.title }}
-================
-
 [libjpeg-turbo](http://libjpeg-turbo.virtualgl.org/) is currently the fastest
 open source jpeg encoder/decoder to the best of my knowledge. Achieving good
 performance in libjpeg-turbo would be impossible without using SIMD instructions

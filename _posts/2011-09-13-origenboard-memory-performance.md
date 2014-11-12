@@ -4,9 +4,6 @@ title: Origenboard, memory performance
 tags: [arm, samsung, performance, dram]
 ---
 
-{{ page.title }}
-================
-
 Those who have read my old
 [Origenboard, early adopter impressions](http://ssvb.github.com/2011/07/30/origenboard-early-adopter.html)
 blog post may wonder why I bought this board in the first place. As far as I know, there is no

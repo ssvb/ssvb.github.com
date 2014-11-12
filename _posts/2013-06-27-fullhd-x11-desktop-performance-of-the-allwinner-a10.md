@@ -4,9 +4,6 @@ title:  FullHD X11 desktop performance of the Allwinner A10
 tags: [x11, allwinner, 2d, performance, dram]
 ---
 
-{{ page.title }}
-================
-
 This blog post is assuming that you are a happy owner of one of the devices,
 based on the Allwinner A10 SoC (with a single core ARM Cortex-A8 1GHz). But
 hopefully the owners of the other low end ARM based devices may also find

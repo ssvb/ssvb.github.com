@@ -4,9 +4,6 @@ title:  Revisiting FullHD X11 desktop performance of the Allwinner A10
 tags: [allwinner, performance, dram]
 ---
 
-{{ page.title }}
-================
-
 In my [previous blog post]({{ site.url }}/2013/06/27/fullhd-x11-desktop-performance-of-the-allwinner-a10.html),
 I was talking about a pathologically bad Linux desktop performance with FullHD monitors on Allwinner A10 hardware.
 

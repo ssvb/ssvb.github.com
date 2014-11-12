@@ -4,9 +4,6 @@ title: Xorg drivers, software rendering for 2D graphics and cairo 1.12 performan
 tags: [x11, 2d, performance, neon, sse2, ti, intel]
 ---
 
-{{ page.title }}
-================
-
 Recently [cairo graphics library](http://en.wikipedia.org/wiki/Cairo_%28graphics%29) got an [update to version 1.12](http://cairographics.org/news/cairo-1.12.0/).
 It brings some nice performance improvements as demonstrated in 
 [three](http://ickle.wordpress.com/2012/03/28/cairo-1-12-let-the-releases-roll/)

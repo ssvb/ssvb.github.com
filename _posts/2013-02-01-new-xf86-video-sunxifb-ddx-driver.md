@@ -4,9 +4,6 @@ title: New xf86-video-sunxifb DDX driver for Xorg
 tags: [x11, allwinner, gles, 2d, performance]
 ---
 
-{{ page.title }}
-================
-
 ## A short introduction
 
 [Allwinner A10/A13 SoC](http://en.wikipedia.org/wiki/Allwinner_A1X) is very interesting

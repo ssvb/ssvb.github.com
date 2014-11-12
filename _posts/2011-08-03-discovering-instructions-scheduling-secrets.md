@@ -4,9 +4,6 @@ title: Discovering instructions scheduling secrets
 tags: [arm, x86, mips, assembly, performance]
 ---
 
-{{ page.title }}
-================
-
 Knowing the instructions scheduling rules is quite important when implementing
 assembly optimizations. That's especially true for the simple embedded processors
 such as ARM or MIPS, which don't typically implement [out-of-order execution](http://en.wikipedia.org/wiki/Out-of-order_execution)

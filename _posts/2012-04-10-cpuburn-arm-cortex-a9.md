@@ -4,9 +4,6 @@ title: Is your ARM Cortex-A9 hot enough?
 tags: [arm, cpuburn, assembly]
 ---
 
-{{ page.title }}
-================
-
 Inspired by the [google+ post](https://plus.google.com/u/0/100242854243155306943/posts/QCpWUZEkF9i) by Koen Kooi, I decided to check whether NEON is also hot in Cortex-A9.
 Appears that [cpuburn tool](http://packages.debian.org/sid/cpuburn) supports ARM since 2010. And openembedded uses an alternative
 [cpuburn-neon](http://cgit.openembedded.org/openembedded/commit/?id=7bc322831d1ed3487d36dee4687b7fa3b5cc81e4) implementation.

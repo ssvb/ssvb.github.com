@@ -4,9 +4,6 @@ title: Origenboard, early adopter impressions
 tags: [arm, samsung]
 ---
 
-{{ page.title }}
-================
-
 ### A little bit of rant
 
 Since a few days ago, I'm a somewhat happy owner of [origenboard](http://www.origenboard.org/) from the first batch.

@@ -4,9 +4,6 @@ title: Yet another oprofile tutorial
 tags: [tools, tutorial, performance]
 ---
 
-{{ page.title }}
-================
-
 Recently it came as a surprise to me that many people don't know how to use
 [oprofile](http://oprofile.sourceforge.net/) efficiently when working on
 performance optimizations. I'm not going to duplicate
